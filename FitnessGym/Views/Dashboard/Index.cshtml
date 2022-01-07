@@ -1,0 +1,190 @@
+﻿@model FitnessGym.ViewModels.DashboardVM
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div style="height:100px"></div>
+<section class="section min-vh-100  mx-3 mt-5  d-flex align-items-center">
+    <div class="container">
+        <div class="row match-height">
+            <div class="col-xl-4 col-lg-6 col-12  ">
+                <div class="card bg-info " style="height: 145px;">
+                    <div class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="row text-white">
+                                <div class="col-10 text-right pl-0">
+                                    <h2 class="text-white mb-2">Trainees</h2>
+                                </div>
+                                <div class="col-2">
+                                    <h2 class="pt-1 m-0 text-white">@Model.Trainees.Count</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-12 ">
+                <div class="card bg-danger" style="height: 145px;">
+                    <div class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="row text-white">
+                                <div class="col-10 text-right pl-0">
+                                    <h2 class="text-white mb-2">Programs</h2>
+                                </div>
+                                <div class="col-2">
+                                    <h2 class="pt-1 m-0 text-white">@Model.Programs.Count</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-12  ">
+                <div class="card bg-success" style="height: 145px;">
+                    <div class="card-body">
+                        <div class="px-3 py-3">
+                            <div class="row text-white">
+                                <div class="col-10 text-right pl-0">
+                                    <h2 class="text-white mb-2">Subscriptions</h2>
+                                </div>
+                                <div class="col-2">
+                                    <h2 class="pt-1 m-0 text-white">@Model.Subscriptions.Count </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row match-height my-5">
+            <div class="col-12 col-md-6" id="recent-sales">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-header" style="color:#ed563b;background-color:white">
+                        <div class="card-title-wrap bar-primary">
+                            <h4 class="card-title">Programs</h4>
+                        </div>
+                        <a class="heading-elements-toggle">
+                            <i class="la la-ellipsis-v font-medium-3"></i>
+                        </a>
+                    </div>
+                    <div class="card-content mt-1">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-xl " id="recent-orders">
+                                <thead class="">
+                                    <tr>
+                                        <th class="border-top-0">Program</th>
+                                        <th class="border-top-0">Members</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var program in Model.Programs)
+                                    {
+                                        <tr>
+                                            <td class="text-truncate">@program.ProgramName </td>
+                                            <td class="text-truncate">@program.Trainees.Count</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 " id="recent-sales">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-header" style="color:#ed563b;background-color:white">
+                        <div class="card-title-wrap bar-primary">
+                            <h4 class="card-title">Subscriptions</h4>
+                        </div>
+                        <a class="heading-elements-toggle">
+                            <i class="la la-ellipsis-v font-medium-3"></i>
+                        </a>
+                    </div>
+                    <div class="card-content mt-1">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-xl " id="recent-orders">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0">Subscription </th>
+                                        <th class="border-top-0">Fees</th>
+                                        <th class="border-top-0">Num Of Trainees</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var subscription in Model.Subscriptions)
+                                    {
+                                        <tr>
+                                            <td class="text-truncate">@subscription.Type </td>
+                                            <td class="text-truncate">@subscription.Fees</td>
+                                            <td class="text-truncate">@subscription.Trainees.Count</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 my-4" id="recent-sales">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <div class="card-header" style="color:#ed563b;background-color:white">
+                        <div class="card-title-wrap bar-primary">
+                            <h4 class="card-title">Trainees</h4>
+                        </div>
+                        <a class="heading-elements-toggle">
+                            <i class="la la-ellipsis-v font-medium-3"></i>
+                        </a>
+                    </div>
+                    <div class="card-content mt-1">
+                        <div class="table-responsive">
+                            @if (Model.Trainees.Count > 0)
+                            {
+
+                                <table class="table table-striped table-xl " id="recent-orders">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">Trainee Name</th>
+                                            <th class="border-top-0">Phone</th>
+                                            <th class="border-top-0">Program</th>
+                                            <th class="border-top-0">Subscription</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var trainee in Model.Trainees)
+                                        {
+                                            <tr>
+                                                <td class="text-truncate">@trainee.FullName </td>
+                                                <td class="text-truncate">@trainee.PhoneNumber</td>
+                                                <td class="text-truncate">@trainee.program.ProgramName</td>
+                                                <td class="text-truncate">@trainee.subscription.Type </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+
+                                <h4 class="text-center text-muted">No Trainees</h4>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+<script>
+    $(function(){
+        $("header").addClass("background-header")
+    })
+</script>
+}
